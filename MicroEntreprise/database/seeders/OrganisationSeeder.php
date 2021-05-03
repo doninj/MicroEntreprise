@@ -13,6 +13,7 @@ class OrganisationSeeder extends Seeder
      */
     public function run()
     {
-        //
+        \App\Models\Organisation::factory(3)->create();
+
     }
 }

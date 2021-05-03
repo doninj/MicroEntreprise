@@ -22,7 +22,11 @@ class OrganisationFactory extends Factory
     public function definition()
     {
         return [
-            //
+                'slug' => $this->faker->name(),
+                'name' => $this->faker->name(),
+                'email'=> $this->faker->unique()->safeEmail(),
+                'address' => $this->faker->address(),
+                'type' => $this->faker->randomElement($array = array ('school','client','government')),
         ];
     }
 }

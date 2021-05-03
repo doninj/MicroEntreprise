@@ -22,7 +22,11 @@ class MissionLineFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'mission_id' => \App\Models\Mission::inRandomOrder()->first()->id,
+            'title' => $this->faker->text($maxNbChars = 200),
+            'quantity' => $this->faker->numberBetween($min = 1, $max = 10),
+            'price' => $this->faker->numberBetween($min = 100, $max = 400),
+            'unity' =>$this->faker->name(),
         ];
     }
 }
