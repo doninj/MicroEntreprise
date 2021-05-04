@@ -10,4 +10,8 @@ class MissionLine extends Model
 {
   use Uuids;
   use HasFactory;
+
+  public function mission(){
+    return $this->belongsTo(Mission::class);
+  }
 }

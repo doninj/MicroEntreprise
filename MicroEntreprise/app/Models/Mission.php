@@ -10,4 +10,15 @@ class Mission extends Model
 {
   use Uuids;
   use HasFactory;
+
+  public function organisation(){
+    return $this->belongsTo(Organisation::class);
+  }
+  public function missionLine(){
+    return $this->hasMany(MissionLine::class);
+  }
+  public function transaction()
+  {
+    return $this->morphMany(Transaction::class, 'transactionable');
+  }
 }

@@ -9,11 +9,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Organisation extends Model
 {
   use Uuids;
-  protected $fillable = ['name','email'];
+  protected $guarded = ['id'];
   use HasFactory;
 
   public function mission () {
     return $this->hasMany(Mission::class);
   }
-
+  public function contribution () {
+    return $this->hasMany(Contribution::class);
+  }
 }

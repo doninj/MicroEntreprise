@@ -23,7 +23,7 @@ class MissionFactory extends Factory
     {
         return [
             'reference' => $this->faker->title(),
-            'organisation_id' =>  \App\Models\Organisation::inRandomOrder()->first()->id,
+            //'organisation_id' =>  \App\Models\Organisation::inRandomOrder()->first()->id,
             'title' => $this->faker->text($maxNbChars = 200),
             'comment' =>$this->faker->text($maxNbChars = 200),
             'deposit' => $this->faker->randomNumber($nbDigits = NULL, $strict = false),

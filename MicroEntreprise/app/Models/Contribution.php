@@ -10,4 +10,13 @@ class Contribution extends Model
 {
     use Uuids;
     use HasFactory;
+
+    public function transaction()
+    {
+      return $this->morphMany(Transaction::class, 'transactionable');
+    }
+
+    public function organisation(){
+      return $this->belongsTo(Organisation::class);
+    }
 }
