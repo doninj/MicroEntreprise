@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Organisation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 
 class OrganisationController extends Controller
 {
@@ -14,7 +15,9 @@ class OrganisationController extends Controller
      */
     public function index()
     {
-        return Organisation::get()->first();
+        $organisation = Organisation::get();
+        $columns = Schema::getColumnListing('organisations'); // users table
+      return view('table',compact('organisation','columns'));
     }
 
     /**
