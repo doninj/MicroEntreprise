@@ -29,8 +29,7 @@ class DatabaseSeeder extends Seeder
         //   $organisation->contribution()->saveMany($contribution);
         // });
 
-        \App\Models\Organisation::factory(2)->has(\App\Models\Mission::factory(2)->has(\App\Models\MissionLine::factory(rand(1,5))))->create();
-        \App\Models\Contribution::factory(2)->create();
+        \App\Models\Organisation::factory(2)->has(\App\Models\Mission::factory(2)->has(\App\Models\MissionLine::factory(rand(1,5))))->has(\App\Models\Contribution::factory(2))->create();
         \App\Models\Transaction::factory(10)->create();
     }
 }
