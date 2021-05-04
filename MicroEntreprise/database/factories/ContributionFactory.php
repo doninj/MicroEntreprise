@@ -22,7 +22,10 @@ class ContributionFactory extends Factory
     public function definition()
     {
         return [
-            //
+          'price' => $this->faker->numberBetween($min = 100, $max = 400),
+          'title' => $this->faker->text($maxNbChars = 200),
+          'comment' =>$this->faker->text($maxNbChars = 200),
+          'organisation_id' =>  \App\Models\Organisation::inRandomOrder()->first()->id,
         ];
     }
 }
