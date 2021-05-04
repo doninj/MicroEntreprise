@@ -10,6 +10,7 @@ class Organisation extends Model
 {
   use Uuids;
   protected $guarded = ['id'];
+  protected $with = ['mission','contribution'];
   use HasFactory;
 
   public function mission () {

@@ -10,6 +10,8 @@ class Mission extends Model
 {
   use Uuids;
   use HasFactory;
+  protected $guarded = ['id'];
+  protected $with = ['missionLine','transaction'];
 
   public function organisation(){
     return $this->belongsTo(Organisation::class);
@@ -19,6 +21,6 @@ class Mission extends Model
   }
   public function transaction()
   {
-    return $this->morphMany(Transaction::class, 'transactionable');
+    return $this->morphMany(Transaction::class, 'source');
   }
 }

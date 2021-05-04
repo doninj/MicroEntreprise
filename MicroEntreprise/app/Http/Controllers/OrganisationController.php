@@ -14,7 +14,7 @@ class OrganisationController extends Controller
      */
     public function index()
     {
-        //
+        return Organisation::get()->first();
     }
 
     /**

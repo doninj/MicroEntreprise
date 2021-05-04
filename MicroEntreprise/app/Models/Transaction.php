@@ -11,7 +11,7 @@ class Transaction extends Model
   use Uuids;
   use HasFactory;
 
-  public function transactionable()
+  public function source()
   {
       return $this->morphTo();
   }

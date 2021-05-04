@@ -10,6 +10,7 @@ class MissionLine extends Model
 {
   use Uuids;
   use HasFactory;
+  protected $guarded = ['id'];
 
   public function mission(){
     return $this->belongsTo(Mission::class);
