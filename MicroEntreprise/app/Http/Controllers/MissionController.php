@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Mission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class MissionController extends Controller
 {
@@ -14,7 +16,8 @@ class MissionController extends Controller
      */
     public function index()
     {
-        //
+      $mission = Mission::get();
+      return view('mission.tableMissions',compact('mission'));
     }
 
     /**
@@ -35,7 +38,6 @@ class MissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -44,9 +46,10 @@ class MissionController extends Controller
      * @param  \App\Models\Mission  $mission
      * @return \Illuminate\Http\Response
      */
-    public function show(Mission $mission)
+    public function show($id)
     {
-        //
+      $mission = Mission::find($id);
+      return view('mission.mission',['mission'=>$mission]);
     }
 
     /**

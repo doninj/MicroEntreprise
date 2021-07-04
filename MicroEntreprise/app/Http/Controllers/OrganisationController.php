@@ -17,7 +17,7 @@ class OrganisationController extends Controller
     {
         $organisation = Organisation::get();
         $columns = Schema::getColumnListing('organisations'); // users table
-      return view('table',compact('organisation','columns'));
+      return view('organisation.tableOrganisations',compact('organisation','columns'));
     }
 
     /**
@@ -47,9 +47,10 @@ class OrganisationController extends Controller
      * @param  \App\Models\Organisation  $organisation
      * @return \Illuminate\Http\Response
      */
-    public function show(Organisation $organisation)
+    public function show($id)
     {
-        //
+        $organisation = Organisation::find($id);
+        return view('organisation.tableOrganisation',compact('organisation'));
     }
 
     /**

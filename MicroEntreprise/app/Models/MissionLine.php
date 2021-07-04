@@ -11,8 +11,13 @@ class MissionLine extends Model
   use Uuids;
   use HasFactory;
   protected $guarded = ['id'];
-
+	protected $appends = ['total'];
+  //protected $visible = ['nb_tranches'];
   public function mission(){
     return $this->belongsTo(Mission::class);
   }
+
+	public function getTotalAttribute(){
+		return $this->price * $this->quantity;
+	}
 }

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mission;
 use App\Models\MissionLine;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MissionLineController extends Controller
 {
@@ -14,7 +16,8 @@ class MissionLineController extends Controller
      */
     public function index()
     {
-        //
+      $missionLine = MissionLine::get();
+      return view('missionLine.tableMissionLine',compact('missionLine'));
     }
 
     /**
