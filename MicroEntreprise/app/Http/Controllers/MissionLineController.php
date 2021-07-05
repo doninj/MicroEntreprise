@@ -25,9 +25,10 @@ class MissionLineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+      $mission_id = $request->query->get('mission');
+      return view('missionLine.create')->with('mission_id', $mission_id);
     }
 
     /**
@@ -38,8 +39,12 @@ class MissionLineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      MissionLine::create($request->all());
+
+      return redirect()->route('missionLine.index')
+          ->with('success', 'Project created successfully.');
     }
+
 
     /**
      * Display the specified resource.

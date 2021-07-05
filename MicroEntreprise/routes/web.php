@@ -27,12 +27,13 @@ Route::get("callback/{provider}", "SocialiteController@callback")->name('sociali
 Route::resource('organisation','OrganisationController');
 //Missions
 Route::resource('mission','MissionController');
+Route::resource('missionLine','MissionLineController');
 
 // Route::get('/missions/{id}', 'MissionController@show')->name('missions.show');
 // Route::get('/missions', 'MissionController@index')->name('missions.index');
 
 
-Route::get('/missionLine', 'MissionLineController@index');
+// Route::get('/missionLine', 'MissionLineController@index');
 
 
 Auth::routes();

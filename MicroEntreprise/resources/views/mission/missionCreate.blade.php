@@ -1,11 +1,10 @@
 @extends('layouts.app')
 @section('content')
 
-<form action="{{ route('mission.store') }}" method="POST" >
+<form action="{{ route('missionLine.store') }}" method="POST" >
   @csrf
-
   <div class="row">
-    <input type="hidden" name="organisation_id" value="{{$organisation}}">
+    <input type="hidden" name="organisation_id" value="{{$mission_id}}">
       <div class="col-xs-12 col-sm-12 col-md-12">
           <div class="form-group">
               <strong>Title</strong>
