@@ -27,7 +27,8 @@ class OrganisationController extends Controller
      */
     public function create()
     {
-        //
+      return view('organisation.organisationCreate');
+
     }
 
     /**
@@ -38,7 +39,10 @@ class OrganisationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      Organisation::create($request->all());
+
+      return redirect()->route('organisation.index')
+          ->with('success', 'Project created successfully.');
     }
 
     /**

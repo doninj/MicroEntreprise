@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
         @section('content')
+
         <h1 style='text-align:center'>Table of organisations</h1>
         <table class="table table-striped table-hover table-bordered">
           <thead>
@@ -22,7 +23,17 @@
                 </tr>
          </tbody>
       </table>
-
+      <div class="row">
+        <div class="col-lg-12 margin text-center">
+            <div class="pull-center">
+                <h2>Créer une mission </h2>
+            </div>
+            <div class="pull-right">
+                <a class="btn btn-success" href="{{ route('mission.create',['organisation' => $organisation->id]) }}" title="Create mission"> Créer une mission
+                    </a>
+            </div>
+        </div>
+    </div>
       <h1 style='text-align:center'>Table of missions for {{ $organisation->name }}</h1>
       <table class="table table-striped table-hover table-bordered">
         <thead>

@@ -16,6 +16,13 @@ use Illuminate\Support\Facades\Route;
 //Organisations
 // Route::get('/organisations', 'OrganisationController@index')->name('organisations.index');
 // Route::get('/organisations/{id}', 'OrganisationController@show')->name('organisations.show');
+Route::get("/", "SocialiteController@loginRegister");
+
+// La redirection vers le provider
+Route::get("redirect/{provider}", "SocialiteController@redirect")->name('socialite.redirect');
+
+// Le callback du provider
+Route::get("callback/{provider}", "SocialiteController@callback")->name('socialite.callback');
 
 Route::resource('organisation','OrganisationController');
 //Missions

@@ -1,6 +1,16 @@
 @extends('layouts.app')
 
         @section('content')
+        <div class="row">
+          <div class="col-lg-12 margin-tb">
+              <div class="pull-left">
+                  <h2>Laravel 8 CRUD </h2>
+              </div>
+              <div class="pull-right">
+                  <a class="btn btn-success" href="{{ route('organisation.create') }}" title="Create organisations"> Créer une organisation
+                      </a>
+              </div>
+          </div>
         <h1 style='text-align:center'>Table of organisations</h1>
         <table class="table table-striped table-hover table-bordered">
 

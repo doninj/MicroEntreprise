@@ -27,7 +27,7 @@ class MissionController extends Controller
      */
     public function create()
     {
-        //
+      return view('mission.missionCreate');
     }
 
     /**
@@ -38,6 +38,10 @@ class MissionController extends Controller
      */
     public function store(Request $request)
     {
+      Mission::create($request->all());
+
+      return redirect()->route('mission.index')
+          ->with('success', 'Project created successfully.');
     }
 
     /**
