@@ -14,7 +14,7 @@ class Mission extends Model
   protected $with = ['missionLine','transaction'];
 
   public function organisation(){
-    return $this->belongsTo(Organisation::class);
+    return $this->belongsTo(Organisation::class,'organisation_id');
   }
   public function missionLine(){
     return $this->hasMany(MissionLine::class);

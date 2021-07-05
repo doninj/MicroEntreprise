@@ -14,7 +14,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        
+      $transactions = Transaction::get();
+      return view('transaction.index',compact('transactions'));
     }
 
     /**

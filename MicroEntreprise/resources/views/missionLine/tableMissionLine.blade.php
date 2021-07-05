@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
     @section('content')
-    <h1 style='text-align:center'>Table of Missions lines</h1>
+    <h1 style='text-align:center'>Table of Missions lines for </h1>
     <table class="table table-striped table-hover table-bordered">
 
         <thead>
@@ -19,7 +19,7 @@
             @foreach($missionLine as $missionLine)
             <tr>
                 <td> {{$missionLine->id}} </td>
-                <td> {{$missionLine->mission_id}} </td>
+                <td><a href="{{ route('mission.show',['mission' => $missionLine->mission_id]) }}">{{$missionLine->mission_id}}</a> </td>
                 <td> {{$missionLine->title}} </td>
                 <td> {{$missionLine->quantity}} </td>
                 <td> {{$missionLine->price}} </td>

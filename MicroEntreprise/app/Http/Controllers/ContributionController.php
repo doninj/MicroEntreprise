@@ -14,7 +14,8 @@ class ContributionController extends Controller
      */
     public function index()
     {
-        //
+      $contribution = Contribution::get();
+      return view('contribution.index',compact('contribution'));
     }
 
     /**
@@ -44,9 +45,10 @@ class ContributionController extends Controller
      * @param  \App\Models\Contribution  $contribution
      * @return \Illuminate\Http\Response
      */
-    public function show(Contribution $contribution)
+    public function show($id)
     {
-        //
+      $contribution = Contribution::find($id);
+      return view('contribution.contribution',['contribution'=>$contribution]);
     }
 
     /**

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
     @section('content')
-    <h1 style='text-align:center'>table of missions</h1>
+    <h1 style='text-align:center'>table of missions of</h1>
     <table class="table table-striped table-hover table-bordered">
         <thead>
             <tr>

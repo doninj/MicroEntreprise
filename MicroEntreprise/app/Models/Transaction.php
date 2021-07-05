@@ -10,9 +10,10 @@ class Transaction extends Model
 {
   use Uuids;
   use HasFactory;
+  protected $with = ['source'];
 
   public function source()
   {
-      return $this->morphTo();
+    return $this->morphTo('source');
   }
 }
