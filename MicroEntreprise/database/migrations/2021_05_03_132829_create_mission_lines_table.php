@@ -22,7 +22,7 @@ class CreateMissionLinesTable extends Migration
           $table->string('unity');
           $table->timestamps();
 
-          $table->foreign('mission_id')->references('id')->on('missions');
+          $table->foreign('mission_id')->references('id')->on('missions')->onDelete('cascade');
         });
     }
 

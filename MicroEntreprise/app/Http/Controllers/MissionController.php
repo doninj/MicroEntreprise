@@ -41,7 +41,7 @@ class MissionController extends Controller
     {
       Mission::create($request->all());
 
-      return redirect()->route('mission.tableMissions')
+      return redirect()->route('mission.index')
           ->with('success', 'Project created successfully.');
     }
 
@@ -88,6 +88,5 @@ class MissionController extends Controller
      */
     public function destroy(Mission $mission)
     {
-        //
     }
 }

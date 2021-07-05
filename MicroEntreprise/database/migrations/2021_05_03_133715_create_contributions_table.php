@@ -21,7 +21,7 @@ class CreateContributionsTable extends Migration
           $table->uuid('organisation_id');
           $table->timestamps();
 
-          $table->foreign('organisation_id')->references('id')->on('organisations');
+          $table->foreign('organisation_id')->references('id')->on('organisations')->onDelete('cascade');
         });
     }
 

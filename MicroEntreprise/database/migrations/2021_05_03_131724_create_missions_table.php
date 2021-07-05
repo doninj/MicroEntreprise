@@ -22,8 +22,7 @@ class CreateMissionsTable extends Migration
           $table->integer('deposit');
           $table->date('ended_at');
           $table->timestamps();
-
-          $table->foreign('organisation_id')->references('id')->on('organisations');
+          $table->foreign('organisation_id')->references('id')->on('organisations')->onDelete('cascade');
         });
     }
 

@@ -22,6 +22,7 @@
                   <th> phone</th>
                   <th> adddress </th>
                   <th>mission</th>
+                  <th>Action</th>
               </tr>
           </thead>
           <tbody>
@@ -32,8 +33,31 @@
                     <td> {{$organisation->email}} </td>
                     <td> {{$organisation->tel}} </td>
                     <td> {{$organisation->address}} </td>
-                    <td> {{$organisation->mission->map(fn ($mission)=> $mission->title)->join(',')}} </td>
+                    <td>
+                      @foreach ($organisation->mission as $mission)
+                          <li>{{$mission->title}}</li>
+                      @endforeach
+                      </td>
+                      <td>
+                        <form action="{{ route('organisation.destroy', $organisation->id) }}" method="POST">
 
+                            <a href="{{ route('organisation.show', $organisation->id) }}" title="show">
+                                show
+                            </a>
+
+                            <a href="{{ route('organisation.edit', $organisation->id) }}">
+                                edit
+
+                            </a>
+
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" title="delete" style="border: none; background-color:transparent;">
+                              delete
+
+                            </button>
+                        </form>
+                    </td>
                 </tr>
                @endforeach
          </tbody>
