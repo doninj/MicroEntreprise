@@ -25,9 +25,10 @@ class MissionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-      return view('mission.missionCreate');
+      $orga = $request->query->get('organisation');
+      return view('mission.missionCreate')->with('organisation', $orga);
     }
 
     /**
@@ -40,7 +41,7 @@ class MissionController extends Controller
     {
       Mission::create($request->all());
 
-      return redirect()->route('mission.index')
+      return redirect()->route('mission.tableMissions')
           ->with('success', 'Project created successfully.');
     }
 
