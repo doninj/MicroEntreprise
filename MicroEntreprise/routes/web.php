@@ -16,21 +16,27 @@ use Illuminate\Support\Facades\Route;
 //Organisations
 // Route::get('/organisations', 'OrganisationController@index')->name('organisations.index');
 // Route::get('/organisations/{id}', 'OrganisationController@show')->name('organisations.show');
-Route::get("/", "SocialiteController@loginRegister");
 
+Route::group(['middleware' => 'auth'], function()
+{
+
+  Route::resource('organisation','OrganisationController');
+  //Missions
+  Route::resource('mission',MissionController::class);
+  Route::resource('missionLine','MissionLineController');
+  Route::resource('transaction', 'TransactionController');
+  Route::resource('contribution', 'ContributionController');
+  Route::get('/mission/{mission}/pdf', 'MissionController@getPdf');
+  Route::get('/logout', 'UserController@logout')->name('logout');
+});
+
+Route::get("/", "SocialiteController@loginRegister")->name('connexion');
 // La redirection vers le provider
 Route::get("redirect/{provider}", "SocialiteController@redirect")->name('socialite.redirect');
 
 // Le callback du provider
 Route::get("callback/{provider}", "SocialiteController@callback")->name('socialite.callback');
 
-Route::resource('organisation','OrganisationController');
-//Missions
-Route::resource('mission','MissionController');
-Route::resource('missionLine','MissionLineController');
-Route::resource('transaction', 'TransactionController');
-Route::resource('contribution', 'ContributionController');
-Route::get('/mission/{mission}/pdf', 'MissionController@getPdf');
 // Route::get('/missions/{id}', 'MissionController@show')->name('missions.show');
 // Route::get('/missions', 'MissionController@index')->name('missions.index');
 

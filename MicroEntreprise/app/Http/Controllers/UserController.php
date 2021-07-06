@@ -13,4 +13,11 @@ class UserController extends Controller
       $user = Auth::user();
       return view('auth.profil.interface', ['user' => $user]);
   }
+  public function Logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('connexion');
+    }
 }

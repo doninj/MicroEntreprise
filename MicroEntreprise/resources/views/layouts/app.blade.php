@@ -59,7 +59,7 @@
               <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
                   <a class="dropdown-item" href=""><i class="fas fa-user"></i> Mon
                       profil</a>
-                  <a class="dropdown-item text-danger" href=""><i
+                  <a class="dropdown-item text-danger" href="{{ route('logout') }}"><i
                           class="fas fa-power-off"></i> Déconnexion</a>
               </div>
           </li>
