@@ -1,10 +1,11 @@
 @extends('layouts.app')
 @section('content')
 
-<form action="{{ route('missionLine.store') }}" method="POST" >
+<div>
+<form action="{{ route('mission.store') }}" method="POST" >
   @csrf
-  <div class="row">
-    <input type="hidden" name="organisation_id" value="{{$mission_id}}">
+  <div class="row" >
+    <input type="hidden" name="organisation_id" value="{{$organisation}}">
       <div class="col-xs-12 col-sm-12 col-md-12">
           <div class="form-group">
               <strong>Title</strong>
@@ -27,7 +28,7 @@
       <div class="col-xs-12 col-sm-12 col-md-12">
           <div class="form-group">
               <strong>deposit:</strong>
-              <input  name="deposit" class="form-control" placeholder="deposit">
+              <input  type="number" name="deposit" class="form-control" max="100" min="0" placeholder="deposit %">
           </div>
           <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
@@ -39,6 +40,6 @@
           <button type="submit" class="btn btn-primary">Submit</button>
       </div>
   </div>
-
+</div>
 </form>
 @endsection

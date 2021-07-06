@@ -31,7 +31,8 @@ class MissionController extends Controller
     public function create(Request $request)
     {
       $orga = $request->query->get('organisation');
-      return view('mission.missionCreate')->with('organisation', $orga);
+      $user = Auth::user();
+      return view('mission.missionCreate',compact('user'))->with('organisation', $orga);
     }
 
     /**
