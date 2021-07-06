@@ -6,7 +6,7 @@ use App\Models\Mission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-
+use Barryvdh\DomPDF\Facade as PDF;
 class MissionController extends Controller
 {
     /**
@@ -89,4 +89,20 @@ class MissionController extends Controller
     public function destroy(Mission $mission)
     {
     }
+    public function getPdf( Mission $mission)
+    {
+      $total = 0;
+      foreach ($mission->missionLine as $line)
+          $total += $line->total;
+
+      // share data to view
+      view()->share('mission', $mission);
+      view()->share('total', $total);
+
+      $pdf = PDF::loadView('pdfMission',  [$mission, $total]);
+
+      // download PDF file with download method
+      return $pdf->download('pdf_file.pdf');
+  }
 }
+

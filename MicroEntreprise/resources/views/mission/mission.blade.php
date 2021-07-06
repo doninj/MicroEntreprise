@@ -2,6 +2,7 @@
 
     @section('content')
     <h1 style='text-align:center'>table of missions of</h1>
+    <a class="btn btn-primary" href="{{ URL::to('/mission/'.$mission->id.'/pdf') }}">Export to PDF</a>
     <table class="table table-striped table-hover table-bordered">
         <thead>
             <tr>

@@ -30,7 +30,7 @@ Route::resource('mission','MissionController');
 Route::resource('missionLine','MissionLineController');
 Route::resource('transaction', 'TransactionController');
 Route::resource('contribution', 'ContributionController');
-
+Route::get('/mission/{mission}/pdf', 'MissionController@getPdf');
 // Route::get('/missions/{id}', 'MissionController@show')->name('missions.show');
 // Route::get('/missions', 'MissionController@index')->name('missions.index');
 
