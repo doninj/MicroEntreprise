@@ -2,7 +2,17 @@
 
     @section('content')
     <h1 style='text-align:center'>table of missions of</h1>
-    <a class="btn btn-primary" href="{{ URL::to('/mission/'.$mission->id.'/pdf') }}">Export to PDF</a>
+    <div class="dropdown show">
+      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        convert to pdf
+      </a>
+
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="{{ URL::to('/mission/'.$mission->id.'/depositInvoice') }}" >deposit invoice</a>
+        <a class="dropdown-item" href="{{ URL::to('/mission/'.$mission->id.'/prepaymentBalance') }}">PrepaymentBalance</a>
+        <a class="dropdown-item" href="{{ URL::to('/mission/'.$mission->id.'/quote') }}" >Quote</a>
+      </div>
+    </div>
     <table class="table table-striped table-hover table-bordered">
         <thead>
             <tr>

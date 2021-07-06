@@ -26,7 +26,9 @@ Route::group(['middleware' => 'auth'], function()
   Route::resource('missionLine','MissionLineController');
   Route::resource('transaction', 'TransactionController');
   Route::resource('contribution', 'ContributionController');
-  Route::get('/mission/{mission}/pdf', 'MissionController@getPdf');
+  Route::get('/mission/{mission}/depositInvoice', 'MissionController@getPdfDeposit');
+  Route::get('/mission/{mission}/prepaymentBalance', 'MissionController@getPdfPrepaymentBalance');
+  Route::get('/mission/{mission}/quote', 'MissionController@getPdfQuote');
   Route::get('/logout', 'UserController@logout')->name('logout');
 });
 

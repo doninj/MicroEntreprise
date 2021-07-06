@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mission;
+use App\Models\Organisation;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class MissionController extends Controller
 {
@@ -43,6 +46,20 @@ class MissionController extends Controller
      */
     public function store(Request $request)
     {
+      $validated = Validator::make($request->all(), [
+        'title' => 'required|string|max:255',
+        'organisation_id' => 'required',
+        'reference' => 'required|max:255',
+        'comment' => 'string',
+        'deposit' => 'required|numeric|min:0|max:100',
+        'ended_at' => 'required|date|after_or_equal:tomorrow'
+    ]);
+
+    if ($validated->fails()) {
+      return redirect()->route('mission.create', ['mission_id' => $request->mission_id, 'organisation' => $request->organisation_id])
+          ->withErrors($validated)
+          ->withInput();
+  }
       Mission::create($request->all());
 
       return redirect()->route('mission.index')
@@ -58,7 +75,8 @@ class MissionController extends Controller
     public function show($id)
     {
       $mission = Mission::find($id);
-      return view('mission.mission',['mission'=>$mission, 'user' => Auth::user()]);
+      $orga = Organisation::find($mission->organisation_id);
+      return view('mission.mission',['mission'=>$mission, 'user' => Auth::user(),'organisation' => $orga]);
     }
 
     /**
@@ -93,20 +111,53 @@ class MissionController extends Controller
     public function destroy(Mission $mission)
     {
     }
-    public function getPdf( Mission $mission)
+    public function getPdfDeposit( Mission $mission)
     {
       $total = 0;
+      $orga = Organisation::find($mission->organisation_id);
+      $user = Auth::user();
       foreach ($mission->missionLine as $line)
           $total += $line->total;
 
       // share data to view
       view()->share('mission', $mission);
       view()->share('total', $total);
+      view()->share('orga', $orga);
+      view()->share('user', $user);
 
-      $pdf = PDF::loadView('pdfMission',  [$mission, $total]);
+      if ($orga->type === "school") {
+        $pdfDeposit = PDF::loadView('pdfAccompte',  [$mission, $total, $orga, $user]);
+        return $pdfDeposit->download(`pdfAccompte.pdf`);
+      }
+      if ($orga->type === "government" || $orga->type === "client") {
+        $pdfDeposit = PDF::loadView('pdfAccompte',  [$mission, $total, $orga, $user]);
+       return  $pdfDeposit->download(`pdfAccompte.pdf`);
+      }
 
       // download PDF file with download method
-      return $pdf->download('pdf_file.pdf');
+  }
+    public function getPdfPrepaymentBalance( Mission $mission)
+    {
+      $total = 0;
+      $orga = Organisation::find($mission->organisation_id);
+      $user = Auth::user();
+      foreach ($mission->missionLine as $line)
+          $total += $line->total;
+
+      // share data to view
+      view()->share('mission', $mission);
+      view()->share('total', $total);
+      view()->share('orga', $orga);
+      view()->share('user', $user);
+
+      if ($orga->type === "school") {
+        $pdfDeposit = PDF::loadView('pdfDeposit',  [$mission, $total, $orga, $user]);
+        return $pdfDeposit->download(`pdf_PrepaymentBalance.pdf`);
+      }
+      if ($orga->type === "government" || $orga->type === "client") {
+        $pdfDeposit = PDF::loadView('pdfPrepaymentBalance',  [$mission, $total, $orga, $user]);
+       return  $pdfDeposit->download(`pdf_PrepaymentBalance.pdf`);
+      }
   }
 }
 

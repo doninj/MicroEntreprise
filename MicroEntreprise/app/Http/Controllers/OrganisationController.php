@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Organisation;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Validator;
 
 class OrganisationController extends Controller
 {
@@ -30,7 +32,8 @@ class OrganisationController extends Controller
      */
     public function create()
     {
-      return view('organisation.organisationCreate');
+      $user = Auth::user();
+      return view('organisation.organisationCreate',compact('user'));
 
     }
 
@@ -42,6 +45,20 @@ class OrganisationController extends Controller
      */
     public function store(Request $request)
     {
+
+      $validated = Validator::make($request->all(), [
+        'slug' => 'required|unique:organisations|string|max:255',
+        'name' => 'required|max:255',
+        'address' => 'required',
+        'email' => 'required|max:255|unique:organisations',
+        'type' => ['required', Rule::in(['school', 'client', 'government'])]
+    ]);
+
+    if ($validated->fails()) {
+      return redirect()->route('organisation.create', ['organisation_id' => $request->organisation_id])
+          ->withErrors($validated)
+          ->withInput();
+  }
       Organisation::create($request->all());
 
       return redirect()->route('organisation.index')
