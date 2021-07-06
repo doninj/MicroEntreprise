@@ -46,6 +46,25 @@
                 </ul>
             </div>
     </div>
+    <span class="navbar-text">
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <img class="rounded-circle img img-fluid"
+                      alt="{{ $user->name }}" width="60px" height="60px"
+                      src="{{ $user->avatar }}" data-holder-rendered="true">
+              </a>
+              <div>{{ $user->name }}</div>
+              <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href=""><i class="fas fa-user"></i> Mon
+                      profil</a>
+                  <a class="dropdown-item text-danger" href=""><i
+                          class="fas fa-power-off"></i> Déconnexion</a>
+              </div>
+          </li>
+      </ul>
+  </span>
     </nav>
 
     <main class="py-4">

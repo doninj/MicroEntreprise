@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
@@ -15,7 +17,8 @@ class TransactionController extends Controller
     public function index()
     {
       $transactions = Transaction::get();
-      return view('transaction.index',compact('transactions'));
+      $user = Auth::user();
+      return view('transaction.index',compact('transactions','user'));
     }
 
     /**

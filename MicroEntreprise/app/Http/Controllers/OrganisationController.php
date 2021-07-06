@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Organisation;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 
 class OrganisationController extends Controller
@@ -17,7 +19,8 @@ class OrganisationController extends Controller
     {
         $organisation = Organisation::get();
         $columns = Schema::getColumnListing('organisations'); // users table
-      return view('organisation.tableOrganisations',compact('organisation','columns'));
+        $user = Auth::user();
+      return view('organisation.tableOrganisations',compact('organisation','columns','user'));
     }
 
     /**
@@ -54,7 +57,8 @@ class OrganisationController extends Controller
     public function show($id)
     {
         $organisation = Organisation::find($id);
-        return view('organisation.tableOrganisation',compact('organisation'));
+        $user = Auth::user();
+        return view('organisation.tableOrganisation',compact('organisation','user'));
     }
 
     /**

@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Mission;
 use App\Models\MissionLine;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class MissionLineController extends Controller
 {
@@ -17,7 +19,8 @@ class MissionLineController extends Controller
     public function index()
     {
       $missionLine = MissionLine::get();
-      return view('missionLine.tableMissionLine',compact('missionLine'));
+      $user = Auth::user();
+      return view('missionLine.tableMissionLine',compact('missionLine','user'));
     }
 
     /**

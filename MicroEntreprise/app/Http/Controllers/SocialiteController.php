@@ -42,7 +42,7 @@ class SocialiteController extends Controller
 
         $email = $data->getEmail(); // L'adresse email
         $name = $data->getName(); // le nom
-
+        $avatar =  $data->getAvatar();
         # 1. On récupère l'utilisateur à partir de l'adresse email
         $user = User::where("email", $email)->first();
 
@@ -51,6 +51,7 @@ class SocialiteController extends Controller
 
             // Mise à jour des informations de l'utilisateur
             $user->name = $name;
+            $user->avatar = $avatar;
             $user->save();
 
         # 3. Si l'utilisateur n'existe pas, on l'enregistre
@@ -60,6 +61,7 @@ class SocialiteController extends Controller
             $user = User::create([
                 'name' => $name,
                 'email' => $email,
+                'avatar' => $data->getAvatar(),
                 'password' => bcrypt("emilie") // On attribue un mot de passe
             ]);
         }

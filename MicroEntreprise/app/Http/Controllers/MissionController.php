@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Mission;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Facades\Auth;
+
 class MissionController extends Controller
 {
     /**
@@ -17,7 +19,8 @@ class MissionController extends Controller
     public function index()
     {
       $mission = Mission::get();
-      return view('mission.tableMissions',compact('mission'));
+      $user = Auth::user();
+      return view('mission.tableMissions',compact('mission','user'));
     }
 
     /**
@@ -54,7 +57,7 @@ class MissionController extends Controller
     public function show($id)
     {
       $mission = Mission::find($id);
-      return view('mission.mission',['mission'=>$mission]);
+      return view('mission.mission',['mission'=>$mission, 'user' => Auth::user()]);
     }
 
     /**
