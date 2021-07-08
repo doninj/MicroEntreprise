@@ -6,16 +6,14 @@
         <table class="table table-striped table-hover table-bordered">
           <thead>
               <tr>
-                  <th>  id </th>
                   <th> name</th>
                   <th> email </th>
-                  <th> phone</th>
+                  <th> phone </i></th>
                   <th> adddress </th>
               </tr>
           </thead>
           <tbody>
                 <tr>
-                    <td> {{$organisation->id}} </td>
                     <td> {{$organisation->name}} </td>
                     <td> {{$organisation->email}} </td>
                     <td> {{$organisation->tel}} </td>
@@ -38,8 +36,7 @@
       <table class="table table-striped table-hover table-bordered">
         <thead>
             <tr>
-              <th> Mission id </th>
-              <th> organisation_id</th>
+              <th> organisation</th>
               <th> reference</th>
               <th> title </th>
               <th> comment</th>
@@ -49,15 +46,16 @@
         </thead>
         <tbody>
           @foreach($organisation->mission as $mission)
+          <a href="{{ route('mission.show',['mission' => $mission->id]) }}">
               <tr>
-                <td><a href="{{ route('mission.show',['mission' => $mission->id]) }}">{{$mission->id}}</a> </td>
-                <td> {{$mission->organisation_id}} </td>
+                <td> {{$organisation->name}} </td>
                 <td> {{$mission->reference}} </td>
-                <td> {{$mission->title}} </td>
+                <td><a href="{{ route('mission.show',['mission' => $mission->id]) }}">{{$mission->title}}</a> </td>
                 <td> {{$mission->comment}} </td>
                 <td> {{$mission->deposit}} </td>
                 <td> {{$mission->ended_at}} </td>
               </tr>
+            </a>
               @endforeach
        </tbody>
     </table>
