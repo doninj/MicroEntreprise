@@ -31,7 +31,9 @@ class MissionLineController extends Controller
     public function create(Request $request)
     {
       $mission_id = $request->query->get('mission');
-      return view('missionLine.create')->with('mission_id', $mission_id);
+      $user = Auth::user();
+
+      return view('missionLine.create', compact('user'))->with('mission_id', $mission_id);
     }
 
     /**

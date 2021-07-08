@@ -34,10 +34,10 @@ Route::group(['middleware' => 'auth'], function()
 
 Route::get("/", "SocialiteController@loginRegister")->name('connexion');
 // La redirection vers le provider
-Route::get("redirect/{provider}", "SocialiteController@redirect")->name('socialite.redirect');
+Route::get("redirect/github", "SocialiteController@redirect")->name('socialite.redirect');
 
 // Le callback du provider
-Route::get("callback/{provider}", "SocialiteController@callback")->name('socialite.callback');
+Route::get("callback/github", "SocialiteController@callback")->name('socialite.callback');
 
 // Route::get('/missions/{id}', 'MissionController@show')->name('missions.show');
 // Route::get('/missions', 'MissionController@index')->name('missions.index');

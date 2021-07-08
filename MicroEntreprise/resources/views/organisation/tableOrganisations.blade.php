@@ -40,22 +40,24 @@
                       </td>
                       <td>
                         <form action="{{ route('organisation.destroy', $organisation->id) }}" method="POST">
-
+                          <div class="columns ">
+                            <div class="col-md-12">
                             <a href="{{ route('organisation.show', $organisation->id) }}" title="show">
-                                show
+                              <i class="far fa-eye  fa-2x"></i>
                             </a>
-
+                          </div>
+                          <div class="col-md-12">
                             <a href="{{ route('organisation.edit', $organisation->id) }}">
-                                edit
-
+                              <i class="far fa-edit fa-2x"></i>
                             </a>
-
+                          </div>
                             @csrf
                             @method('DELETE')
                             <button type="submit" title="delete" style="border: none; background-color:transparent;">
-                              delete
+                              <i class="fas fa-trash-alt fa-2x"></i>
 
                             </button>
+                          </div>
                         </form>
                     </td>
                 </tr>

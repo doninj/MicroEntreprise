@@ -36,9 +36,8 @@
           </div>
       </div>
       <select name='unity' class="form-control form-control-lg" aria-label="Default select example">
-        <option selected value="/h">/h</option>
-        <option value="/day">/day</option>
-        <option value="/week">/week</option>
+        <option selected value="/h">heure</option>
+        <option value="/day">jour</option>
       </select>
       <div class="col-xs-12 col-sm-12 col-md-12 text-center">
           <button type="submit" class="btn btn-primary">Submit</button>

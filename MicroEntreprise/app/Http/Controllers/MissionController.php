@@ -125,16 +125,8 @@ class MissionController extends Controller
       view()->share('orga', $orga);
       view()->share('user', $user);
 
-      if ($orga->type === "school") {
-        $pdfDeposit = PDF::loadView('pdfAccompte',  [$mission, $total, $orga, $user]);
+        $pdfDeposit = PDF::loadView('pdf.pdfAccompte',  [$mission, $total, $orga, $user]);
         return $pdfDeposit->download(`pdfAccompte.pdf`);
-      }
-      if ($orga->type === "government" || $orga->type === "client") {
-        $pdfDeposit = PDF::loadView('pdfAccompte',  [$mission, $total, $orga, $user]);
-       return  $pdfDeposit->download(`pdfAccompte.pdf`);
-      }
-
-      // download PDF file with download method
   }
     public function getPdfPrepaymentBalance( Mission $mission)
     {

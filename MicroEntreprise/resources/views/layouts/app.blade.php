@@ -12,6 +12,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://kit.fontawesome.com/dcaccbb9b6.js" crossorigin="anonymous"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -20,8 +21,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
-</head>
+  </head>
 
 <body>
     <div id="app">
@@ -43,6 +43,9 @@
                       </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('mission.index') }}">missions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('transaction.index') }}">transactions</a>
                         </li>
                 </ul>
             </div>
