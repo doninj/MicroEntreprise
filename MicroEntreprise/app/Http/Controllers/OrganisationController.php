@@ -86,7 +86,9 @@ class OrganisationController extends Controller
      */
     public function edit(Organisation $organisation)
     {
-        //
+      $user = Auth::user();
+      return view('organisation.edit', compact('organisation','user'));
+
     }
 
     /**
@@ -96,9 +98,33 @@ class OrganisationController extends Controller
      * @param  \App\Models\Organisation  $organisation
      * @return \Illuminate\Http\Response
      */
+    // public function goUpdate($id) {
+    //   $organisation = Organisation::find($id);
+    //   $user = Auth::user();
+    //   return view('organisation.updateOrganisation',compact('organisation','user'));
+    // }
     public function update(Request $request, Organisation $organisation)
     {
-        //
+
+      $validator = Validator::make($request->all(), [
+        'name' => 'required|max:255',
+        'address' => 'required',
+        'type' => ['required', Rule::in(['school', 'client', 'government'])]
+
+    ]);
+    if ($validator->fails()) {
+        return redirect()->route('organisation.edit', $organisation->id)
+            ->withErrors($validator)
+            ->withInput();
+    }
+      $organisation->slug = $request->slug;
+      $organisation->name = $request->name;
+      $organisation->address = $request->address;
+      $organisation->type = $request->type;
+      $organisation->email = $request->email;
+      $organisation->save();
+      return redirect()->route('organisation.index')
+      ->with('success', 'Orga updated successfully');
     }
 
     /**

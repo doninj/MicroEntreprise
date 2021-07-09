@@ -21,7 +21,7 @@ class MissionController extends Controller
      */
     public function index()
     {
-      $mission = Mission::get();
+      $mission = Mission::orderByDesc('ended_at')->get();
       $user = Auth::user();
       return view('mission.tableMissions',compact('mission','user'));
     }
@@ -87,7 +87,8 @@ class MissionController extends Controller
      */
     public function edit(Mission $mission)
     {
-        //
+      $user = Auth::user();
+      return view('mission.edit', compact('mission','user'));
     }
 
     /**
@@ -99,7 +100,27 @@ class MissionController extends Controller
      */
     public function update(Request $request, Mission $mission)
     {
-        //
+      $validator = Validator::make($request->all(), [
+        'title' => 'required|max:255',
+        'deposit' => 'required|numeric|min:0|max:100',
+        'reference' => 'required|max:255',
+        'comment' => 'string',
+        'ended_at' => 'required|date|after_or_equal:tomorrow'
+
+    ]);
+    if ($validator->fails()) {
+        return redirect()->route('mission.edit', $mission->id)
+            ->withErrors($validator)
+            ->withInput();
+    }
+      $mission->reference = $request->reference;
+      $mission->title = $request->title;
+      $mission->comment = $request->comment;
+      $mission->deposit = $request->deposit;
+      $mission->ended_at = $request->ended_at;
+      $mission->save();
+      return redirect()->route('mission.index')
+      ->with('success', 'Orga updated successfully');
     }
 
     /**

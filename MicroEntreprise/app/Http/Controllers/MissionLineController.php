@@ -70,7 +70,8 @@ class MissionLineController extends Controller
      */
     public function edit(MissionLine $missionLine)
     {
-        //
+      $user = Auth::user();
+      return view('missionLine.edit', compact('missionLine','user'));
     }
 
     /**

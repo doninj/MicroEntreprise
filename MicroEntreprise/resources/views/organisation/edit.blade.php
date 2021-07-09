@@ -11,43 +11,44 @@
     </ul>
 </div>
 @endif
-<form action="{{ route('organisation.store') }}" method="POST" >
+<form action="{{ route('organisation.destroy', $organisation->id) }}" method="POST">
   @csrf
 
   <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
           <div class="form-group">
               <strong>Nom de l'organisation:</strong>
-              <input type="text" name="name" class="form-control" placeholder="organisation">
+              <input type="text" value="{{ $organisation->name }}" name="name" class="form-control" placeholder="organisation">
           </div>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12">
           <div class="form-group">
               <strong>email:</strong>
-              <input type="email" class="form-control" style="height:50px" name="email"
+              <input type="email" class="form-control"  value="{{ $organisation->email }}" style="height:50px" name="email"
                   placeholder="Introduction">
           </div>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12">
           <div class="form-group">
               <strong>slug:</strong>
-              <input type="text" name="slug" class="form-control" placeholder="slug">
+              <input type="text" name="slug" value="{{ $organisation->slug }}" class="form-control" placeholder="slug">
           </div>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12">
           <div class="form-group">
-              <strong>addresse:</strong>
-              <input  name="address" class="form-control" placeholder="address">
+              <strong>adresse:</strong>
+              <input  name="address" value="{{ $organisation->address }}" class="form-control" placeholder="address">
           </div>
       </div>
-      <select name='type' class="form-control form-control-lg" aria-label="Default select example">
+      <select name='type'  value="{{ $organisation->type }}" class="form-control form-control-lg" aria-label="Default select example">
         <option selected>Selectionner le type de l'organisation</option>
         <option value="school">école</option>
         <option value="client">client</option>
         <option value="governement">governement</option>
       </select>
+      @method('PUT')
       <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary">modifier</button>
       </div>
   </div>
 

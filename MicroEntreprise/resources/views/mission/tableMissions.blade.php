@@ -13,6 +13,8 @@
                 <th> comment</th>
                 <th> deposit</th>
                 <th> ended_at </th>
+                <th>Action</th>
+
             </tr>
         </thead>
         <tbody>
@@ -25,6 +27,28 @@
                 <td> {{$missions->comment}} </td>
                 <td> {{$missions->deposit}} </td>
                 <td> {{$missions->ended_at}} </td>
+                  <td>
+                    <form action="{{ route('mission.destroy', $missions->id) }}" method="POST">
+                      <div class="columns ">
+                        <div class="col-md-12">
+                        <a href="{{ route('mission.show', $missions->id) }}" title="show">
+                          <i class="far fa-eye  fa-2x"></i>
+                        </a>
+                      </div>
+                      <div class="col-md-12">
+                        <a href="{{ route('mission.edit', $missions->id) }}">
+                          <i class="fas fa-edit  fa-lg"></i>
+                        </a>
+                      </div>
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" title="delete" style="border: none; background-color:transparent;">
+                          <i class="fas fa-trash-alt fa-2x"></i>
+
+                        </button>
+                      </div>
+                    </form>
+                </td>
             </tr>
             @endforeach
         </tbody>

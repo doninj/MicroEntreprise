@@ -4,23 +4,22 @@
         <div class="row">
           <div class="col-lg-12 margin-tb">
               <div class="pull-left">
-                  <h2>Laravel 8 CRUD </h2>
               </div>
               <div class="pull-right">
                   <a class="btn btn-success" href="{{ route('organisation.create') }}" title="Create organisations"> Créer une organisation
                       </a>
               </div>
           </div>
-        <h1 style='text-align:center'>Table of organisations</h1>
+        <h1 style='text-align:center'>Table des organisations</h1>
         <table class="table table-striped table-hover table-bordered">
 
           <thead>
               <tr>
                   <th>  id </th>
-                  <th> name</th>
+                  <th> nom</th>
                   <th> email </th>
-                  <th> phone</th>
-                  <th> adddress </th>
+                  <th> tel</th>
+                  <th> adresse </th>
                   <th>mission</th>
                   <th>Action</th>
               </tr>
@@ -48,7 +47,7 @@
                           </div>
                           <div class="col-md-12">
                             <a href="{{ route('organisation.edit', $organisation->id) }}">
-                              <i class="far fa-edit fa-2x"></i>
+                              <i class="fas fa-edit  fa-lg"></i>
                             </a>
                           </div>
                             @csrf
