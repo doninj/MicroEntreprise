@@ -16,6 +16,17 @@
             <th>Date Created</th>
             <th width="280px">Action</th>
         </tr>
+        <div class="form-style-2">
+          <form action="{{ URL::route('trier') }}" method="GET">
+              <select name="missions" id="type" class="select-field" required>
+                  <option value=""> -- </option>
+                  <option value="tout"> Tout </option>
+                  <option value="\App\Models\Mission">Mission:</option>
+                  <option value="\App\Models\Contribution">Contribution:</option>
+              </select>
+              <label><span> </span><input type="submit" value="Trier" /></label>
+          </form>
+      </div>
         @foreach ($transactions as $transaction)
             <tr>
                 <td>{{ $transaction->id }}</td>

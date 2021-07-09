@@ -25,6 +25,7 @@ Route::group(['middleware' => 'auth'], function()
   Route::resource('mission',MissionController::class);
   Route::resource('missionLine','MissionLineController');
   Route::resource('transaction', 'TransactionController');
+  Route::get('trier', 'TransactionController@trier')->name('trier');
   Route::resource('contribution', 'ContributionController');
   Route::get('/mission/{mission}/depositInvoice', 'MissionController@getPdfDeposit');
   Route::get('/mission/{mission}/prepaymentBalance', 'MissionController@getPdfPrepaymentBalance');

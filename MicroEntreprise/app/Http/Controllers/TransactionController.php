@@ -21,6 +21,18 @@ class TransactionController extends Controller
       return view('transaction.index',compact('transactions','user'));
     }
 
+    public function trier(Request $request) {
+      $user = Auth::user();
+      $missionId = $request->missions;
+      if ($missionId === "tout") {
+          $transactions = Transaction::all();
+          return view('transaction.index',compact('user','transactions'));
+      }
+      else {
+          $transactions = Transaction::where('source_type', $missionId)->get();
+          return view('transaction.index',compact('user','transactions'));
+      }
+  }
     /**
      * Show the form for creating a new resource.
      *
